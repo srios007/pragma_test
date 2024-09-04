@@ -1,23 +1,21 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../../../services/services.dart';
 
-  final count = 0.obs;
+class HomeController extends GetxController {
+  final areaService = Get.find<CatService>();
+  final pruebaaa = '';
   @override
   void onInit() {
     super.onInit();
+    prueba();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  prueba() async {
+    final response = await areaService.getBreeds();
 
-  @override
-  void onClose() {
-    super.onClose();
+    log('Response: ${response.length}');
   }
-
-  void increment() => count.value++;
 }

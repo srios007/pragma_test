@@ -11,16 +11,11 @@ class DioService {
 
   static final instance = DioService._();
 
-  static final baseUrl = dotenv.env['BASE_URL'] ?? '';
-  static final apiKey = dotenv.env['API_KEY'] ?? '';
-
-  dioConfig({
-    String baseUrl = '',
-  }) {
+  dioConfig() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: baseUrl,
-        headers: {'x-api-key': apiKey},
+        baseUrl: dotenv.env['BASE_URL']!,
+        headers: {'x-api-key': dotenv.env['API_KEY']},
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
       ),
