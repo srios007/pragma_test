@@ -11,7 +11,8 @@ class DioService {
 
   static final instance = DioService._();
 
-  static final baseUrl = dotenv.env['BASE_URL']!;
+  static final baseUrl = dotenv.env['BASE_URL'] ?? '';
+  static final apiKey = dotenv.env['API_KEY'] ?? '';
 
   dioConfig({
     String baseUrl = '',
@@ -19,6 +20,7 @@ class DioService {
     final dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
+        headers: {'x-api-key': apiKey},
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
       ),
