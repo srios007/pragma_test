@@ -5,7 +5,6 @@ import 'weight.dart';
 part 'cat.g.dart';
 
 @JsonSerializable()
-
 class Cat {
   int? adaptability;
   int? affectionLevel;
@@ -85,7 +84,7 @@ class Cat {
     this.wikipediaUrl,
   });
 
-    factory Cat.fromJson(Map<String, dynamic> json) => _$CatFromJson(json);
+  factory Cat.fromJson(Map<String, dynamic> json) => _$CatFromJson(json);
 
   Map<String, dynamic> toJson() => _$CatToJson(this);
 }

@@ -37,3 +37,10 @@ flutter:
 
   assets:
   - .env
+  - assets/images/
+  
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/splash.png
+  android_12:
+    image: assets/images/splash.png
