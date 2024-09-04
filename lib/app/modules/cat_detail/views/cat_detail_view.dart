@@ -102,6 +102,7 @@ class CatDetailView extends GetView<CatDetailController> {
                       value: controller.cat.vocalisation.toString(),
                     ),
                     CatInfoWidget(
+                      isUrl: true,
                       title: 'CFA URL',
                       value: controller.cat.cfaUrl!,
                     ),
