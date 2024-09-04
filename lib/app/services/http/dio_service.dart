@@ -15,7 +15,6 @@ class DioService {
     final dio = Dio(
       BaseOptions(
         baseUrl: dotenv.env['BASE_URL']!,
-        headers: {'x-api-key': dotenv.env['API_KEY']},
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
       ),

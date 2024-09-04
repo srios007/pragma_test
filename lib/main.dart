@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       fallbackLocale: const Locale('es', ''),
       getPages: AppPages.routes,
-      initialRoute: _setInitialRoute(),
+      initialRoute: Routes.HOME,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -35,8 +35,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Palette.mainColor,
-          iconTheme: IconThemeData(color: Palette.white),
-          titleTextStyle: TextStyle(color: Palette.white, fontSize: 18),
+          iconTheme: IconThemeData(color: Palette.black),
+          titleTextStyle: TextStyle(
+            color: Palette.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
           centerTitle: true,
           elevation: 0,
         ),
@@ -45,13 +49,5 @@ class MyApp extends StatelessWidget {
       title: 'Application',
       useInheritedMediaQuery: true,
     );
-  }
-
-  String _setInitialRoute() {
-    final box = GetStorage();
-    if (box.hasData('user')) {
-      return Routes.HOME;
-    }
-    return Routes.HOME;
   }
 }

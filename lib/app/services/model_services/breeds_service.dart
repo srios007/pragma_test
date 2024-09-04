@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:get/get.dart';
 
@@ -17,8 +18,25 @@ class CatService extends GetxService {
     final response = await DioService.instance.get(ApiEndpoints.breeds);
     if (response != null && response.data != null) {
       final List<dynamic> data = response.data;
+
       return data.map((e) => Cat.fromJson(e)).toList();
     }
     return [];
+  }
+
+  Future<String> getCatsImages({
+    int limit = 1,
+    required String breedIds,
+  }) async {
+    // headers: {'x-api-key': dotenv.env['API_KEY']},
+    log('Entra a getCatsImages');
+    final response = await DioService.instance.get(
+      ApiEndpoints.images,
+      queryParameters: {'limit': limit, 'breed_ids': breedIds},
+    );
+    if (response != null && response.data != null) {
+      return response.data[0]['url'];
+    }
+    return '';
   }
 }
