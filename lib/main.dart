@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'app/routes/app_pages.dart';
+import 'app/utils/utils.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('es', ''),
       getPages: AppPages.routes,
       initialRoute: _setInitialRoute(),
-      locale: Get.deviceLocale,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
