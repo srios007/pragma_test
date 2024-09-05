@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,7 +13,7 @@ class CatInfoWidget extends StatelessWidget {
   });
 
   final String title;
-  final String value;
+  final String? value;
   final bool isUrl;
 
   @override
@@ -31,33 +30,31 @@ class CatInfoWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Visibility(
-          visible: isUrl,
-          replacement: Text(
-            value,
-            style: const TextStyle(color: Palette.black),
-          ),
-          child: GestureDetector(
-            onTap: () async {
-              if (await canLaunch(value)) {
-                await launch(value);
-              } else {
-                Get.snackbar(
-                  'Error',
-                  'There was an error opening the link',
-                );
-              }
-            }, 
-            child: Text(
-              value,
-              style: const TextStyle(
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.blue,
+        isUrl && value != null
+            ? GestureDetector(
+                onTap: () async {
+                  if (await canLaunch(value!)) {
+                    await launch(value!);
+                  } else {
+                    Get.snackbar(
+                      'Error',
+                      'There was an error opening the link',
+                    );
+                  }
+                },
+                child: Text(
+                  value!,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                  ),
+                ),
+              )
+            : Text(
+                value == null ? 'N/A' : value!,
+                style: const TextStyle(color: Palette.black),
               ),
-            ),
-          ),
-        ),
         const SizedBox(height: 10),
       ],
     );

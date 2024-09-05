@@ -12,7 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
   await GetStorage.init();
-  Get.put(CatService());
+  Get.put(BreedsService());
   runApp(const MyApp());
 }
 

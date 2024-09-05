@@ -17,31 +17,15 @@ class CatImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: controller.catService.getCatsImages(breedIds: cat.id!),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return SizedBox(
-            width: Get.width,
-            height: Get.width,
-            child: const Center(
-              child: LoadingWidget(),
-            ),
-          );
-        } else if (snapshot.connectionState == ConnectionState.done) {
-          cat.imageUrl = snapshot.data;
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImageWidget(
-              width: Get.width,
-              height: Get.width,
-              imageUrl: snapshot.data!,
-            ),
-          );
-        } else {
-          return const SizedBox();
-        }
-      },
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: CachedNetworkImageWidget(
+        width: Get.width,
+        height: Get.width,
+        imageUrl: cat.imageUrl == null
+            ? 'https://cdn2.thecatapi.com/images/${cat.referenceImageId}.jpg'
+            : cat.imageUrl!,
+      ),
     );
   }
 }

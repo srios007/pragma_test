@@ -25,7 +25,9 @@ class CatDetailView extends GetView<CatDetailController> {
               child: CachedNetworkImageWidget(
                 width: Get.width,
                 height: Get.width,
-                imageUrl: controller.cat.imageUrl!,
+                imageUrl: controller.cat.imageUrl == null
+                    ? 'https://cdn2.thecatapi.com/images/${controller.cat.referenceImageId}.jpg'
+                    : controller.cat.imageUrl!,
               ),
             ),
             Expanded(
@@ -35,27 +37,27 @@ class CatDetailView extends GetView<CatDetailController> {
                   children: [
                     CatInfoWidget(
                       title: 'Description',
-                      value: controller.cat.description!,
+                      value: controller.cat.description,
                     ),
                     CatInfoWidget(
                       title: 'Temperament',
-                      value: controller.cat.temperament!,
+                      value: controller.cat.temperament,
                     ),
                     CatInfoWidget(
                       title: 'Origin',
-                      value: controller.cat.origin!,
+                      value: controller.cat.origin,
                     ),
                     CatInfoWidget(
                       title: 'Life Span',
-                      value: controller.cat.lifeSpan!,
+                      value: controller.cat.lifeSpan,
                     ),
                     CatInfoWidget(
                       title: 'Weight (Imperial)',
-                      value: controller.cat.weight!.imperial!,
+                      value: controller.cat.weight!.imperial,
                     ),
                     CatInfoWidget(
                       title: 'Weight (Metric)',
-                      value: controller.cat.weight!.metric!,
+                      value: controller.cat.weight!.metric,
                     ),
                     CatInfoWidget(
                       title: 'Affection Level',
@@ -104,22 +106,22 @@ class CatDetailView extends GetView<CatDetailController> {
                     CatInfoWidget(
                       isUrl: true,
                       title: 'CFA URL',
-                      value: controller.cat.cfaUrl!,
+                      value: controller.cat.cfaUrl,
                     ),
                     CatInfoWidget(
                       isUrl: true,
                       title: 'Vetstreet URL',
-                      value: controller.cat.vetstreetUrl!,
+                      value: controller.cat.vetstreetUrl,
                     ),
                     CatInfoWidget(
                       isUrl: true,
                       title: 'Vcahospitals URL',
-                      value: controller.cat.vcahospitalsUrl!,
+                      value: controller.cat.vcahospitalsUrl,
                     ),
                     CatInfoWidget(
                       isUrl: true,
                       title: 'Wikipedia URL',
-                      value: controller.cat.wikipediaUrl!,
+                      value: controller.cat.wikipediaUrl,
                     ),
                   ],
                 ),

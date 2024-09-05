@@ -1,18 +1,17 @@
-import 'dart:developer';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import '../../models/models.dart';
 import '../../utils/utils.dart';
 import '../services.dart';
 
-class CatService extends GetxService {
-  factory CatService() {
+class BreedsService extends GetxService {
+  factory BreedsService() {
     return _instance;
   }
 
-  CatService._internal();
-  static final CatService _instance = CatService._internal();
+  BreedsService._internal();
+  static final BreedsService _instance = BreedsService._internal();
 
   Future<List<Cat>> getBreeds() async {
     final response = await DioService.instance.get(ApiEndpoints.breeds);
@@ -24,19 +23,22 @@ class CatService extends GetxService {
     return [];
   }
 
-  Future<String> getCatsImages({
-    int limit = 1,
+  Future<List<CatSearch>> getCatsSearch({
     required String breedIds,
   }) async {
-    // headers: {'x-api-key': dotenv.env['API_KEY']},
-    log('Entra a getCatsImages');
     final response = await DioService.instance.get(
       ApiEndpoints.images,
-      queryParameters: {'limit': limit, 'breed_ids': breedIds},
+      queryParameters: {
+        'limit': 10,
+        'page': 0,
+        'breed_ids': breedIds,
+        'api_key': dotenv.env['API_KEY']
+      },
     );
     if (response != null && response.data != null) {
-      return response.data[0]['url'];
+      final List<dynamic> data = response.data;
+      return data.map((e) => CatSearch.fromJson(e)).toList();
     }
-    return '';
+    return [];
   }
 }

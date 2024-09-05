@@ -9,10 +9,12 @@ class CatItem extends StatelessWidget {
     super.key,
     required this.item,
     required this.controller,
+ 
   });
 
   final Cat item;
   final HomeController controller;
+ 
 
   @override
   Widget build(BuildContext context) {
