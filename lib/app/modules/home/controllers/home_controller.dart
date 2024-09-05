@@ -25,7 +25,7 @@ class HomeController extends GetxController {
     if (_debounce?.isActive ?? false) {
       _debounce?.cancel();
     }
-    _debounce = Timer(const Duration(milliseconds: 500), () {
+    _debounce = Timer(const Duration(milliseconds: 1000), () {
       performSearch(query);
     });
   }
