@@ -29,9 +29,9 @@ dart --version
 
 ## Correr el proyecto
 
-Colocar en la carpeta del proyecto el archivo `.env` que está en el correo de la prueba técnica.
+- Colocar en la carpeta del proyecto el archivo `.env` que está en el correo de la prueba técnica.
 
-Correr los siguientes comandos en tu terminal:
+- Correr los siguientes comandos en tu terminal:
 
 ```
 flutter pub get
