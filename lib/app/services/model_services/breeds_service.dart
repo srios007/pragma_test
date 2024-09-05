@@ -23,16 +23,13 @@ class BreedsService extends GetxService {
     return [];
   }
 
-  Future<List<CatSearch>> getCatsSearch({
-    required String breedIds,
-  }) async {
+  Future<List<CatSearch>> getCatsSearch({required String breedIds}) async {
     final response = await DioService.instance.get(
       ApiEndpoints.images,
       queryParameters: {
-        'limit': 10,
-        'page': 0,
+        'api_key': dotenv.env['API_KEY'],
         'breed_ids': breedIds,
-        'api_key': dotenv.env['API_KEY']
+        'limit': 20,
       },
     );
     if (response != null && response.data != null) {
