@@ -20,6 +20,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             const SizedBox(height: 10),
             SearchInput(
+              focusNode: controller.focusNode,
               onChanged: controller.onSearchChanged,
               textEditingController: controller.searchController,
             ),

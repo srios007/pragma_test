@@ -12,6 +12,7 @@ class HomeController extends GetxController {
   final isSearching = false.obs;
   List<CatSearch> catsSearchList = [];
   Timer? _debounce;
+  final focusNode = FocusNode();
 
   @override
   void onClose() {
@@ -35,6 +36,14 @@ class HomeController extends GetxController {
       isSearching.value = false;
       return;
     }
+    if (query.length < 4) {
+      Get.snackbar(
+        'Search query too short',
+        'Please enter at least 3 characters',
+        backgroundColor: Colors.grey.withOpacity(0.4),
+      );
+      return;
+    }
     catService.getCatsSearch(breedIds: query).then((value) {
       if (value.isEmpty) {
         catsSearchList.clear();
@@ -49,6 +58,7 @@ class HomeController extends GetxController {
       }
       catsSearchList.addAll(value);
       isSearching.value = true;
+      focusNode.unfocus();
     });
   }
 }

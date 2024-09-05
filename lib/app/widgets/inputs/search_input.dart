@@ -8,16 +8,20 @@ class SearchInput extends StatelessWidget {
     super.key,
     required this.textEditingController,
     this.onChanged,
+    this.focusNode,
   });
 
   final TextEditingController textEditingController;
   final void Function(String)? onChanged;
+  final FocusNode? focusNode;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: Get.width - 40,
       child: TextFormField(
         controller: textEditingController,
+        focusNode: focusNode,
+        onFieldSubmitted: onChanged,
         decoration: InputDecoration(
           border: Styles().borderTextField,
           disabledBorder: Styles().borderTextField,
